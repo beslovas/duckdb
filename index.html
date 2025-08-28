@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckDB Helm Charts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            border: 1px solid #e9ecef;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+        .repo-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .repo-link:hover {
+            text-decoration: underline;
+        }
+        .chart-list {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>DuckDB Helm Charts</h1>
+    
+    <p>Welcome to the DuckDB Helm Charts repository. This repository contains Helm charts for deploying DuckDB with UI support, configurable extensions, and persistent storage.</p>
+
+    <h2>Usage</h2>
+    
+    <p>Helm is required to use and operate these charts. You can add the DuckDB Helm Repository like below:</p>
+    
+    <pre><code>helm repo add beslovas https://beslovas.github.io/duckdb</code></pre>
+
+    <h2>Available Charts</h2>
+    
+    <div class="chart-list">
+        <h3>DuckDB Chart</h3>
+        <p>A Helm chart for DuckDB with UI support, configurable extensions, and persistent storage.</p>
+        <p><strong>Install:</strong></p>
+        <pre><code>helm install my-duckdb beslovas/duckdb</code></pre>
+        <p><strong>Upgrade:</strong></p>
+        <pre><code>helm upgrade my-duckdb beslovas/duckdb</code></pre>
+    </div>
+
+    <h2>Documentation</h2>
+    
+    <p>Documentation and the default <code>values.yaml</code> can be found in the relevant chart repository:</p>
+    
+    <ul>
+        <li><a href="https://github.com/beslovas/duckdb" class="repo-link">DuckDB Helm Chart Repository</a></li>
+        <li><a href="https://duckdb.org/" class="repo-link">DuckDB Official Documentation</a></li>
+    </ul>
+
+    <h2>Features</h2>
+    
+    <ul>
+        <li>DuckDB UI support</li>
+        <li>Configurable extensions (httpfs, parquet, json, sqlite)</li>
+        <li>Persistent storage support</li>
+        <li>Configurable duckdbrc settings</li>
+        <li>Multi-architecture Docker images</li>
+        <li>Kubernetes-ready deployment</li>
+    </ul>
+
+    <h2>Contributing</h2>
+    
+    <p>If you want to contribute to our charts, please visit the <a href="https://github.com/beslovas/duckdb" class="repo-link">GitHub repository</a>.</p>
+
+    <hr>
+    
+    <p><em>This page is automatically generated for the DuckDB Helm Charts repository.</em></p>
+</body>
+</html>
