@@ -138,7 +138,7 @@ jobs:
         repository: duckdb
         branch: master
         target_dir: helm/duckdb
-        index_dir: .
+        index_dir: ./helm/duckdb
         commit_username: beslovas
         commit_email: beslovas@users.noreply.github.com
 
