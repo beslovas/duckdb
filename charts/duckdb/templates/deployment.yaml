@@ -104,6 +104,12 @@ spec:
             - name: DUCKDB_THREADS
               value: "{{ .Values.duckdb.config.threads }}"
             {{- end }}
+            {{- if .Values.env }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
       {{- if .Values.sidecars }}
       {{- toYaml .Values.sidecars | nindent 8 }}
       {{- end }}

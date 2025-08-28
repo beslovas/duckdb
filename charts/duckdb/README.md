@@ -92,6 +92,19 @@ configMap:
     SET enable_progress_bar=true;
 ```
 
+### Environment Variables
+
+The chart supports additional environment variables:
+
+```yaml
+env:
+  DUCKDB_LOG_LEVEL: "INFO"
+  DUCKDB_TEMP_DIR: "/tmp"
+  CUSTOM_VAR: "custom_value"
+```
+
+**Note:** This adds additional environment variables without overriding the existing DuckDB configuration.
+
 ## Usage
 
 ### Accessing DuckDB UI

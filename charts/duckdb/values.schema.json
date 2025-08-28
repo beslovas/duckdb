@@ -481,6 +481,13 @@
           "default": 1
         }
       }
+    },
+    "env": {
+      "type": "object",
+      "description": "Additional environment variables to add to the container",
+      "additionalProperties": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": false
