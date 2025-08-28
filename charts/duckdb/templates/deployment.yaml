@@ -86,8 +86,7 @@ spec:
               mountPath: {{ .Values.persistence.path }}
             {{- if .Values.configMap.enabled }}
             - name: duckdbrc
-              mountPath: /root/.duckdb/duckdbrc
-              subPath: duckdbrc
+              mountPath: /root/.duckdbrc
             {{- end }}
           env:
             - name: DUCKDB_DATABASE_PATH
