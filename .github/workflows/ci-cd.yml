@@ -9,6 +9,10 @@ env:
   DUCKDB_VERSION: v1.3.2
   TAG_PREFIX: ""
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-docker:
     runs-on: ubuntu-latest
