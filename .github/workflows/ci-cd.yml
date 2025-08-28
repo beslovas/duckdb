@@ -137,7 +137,7 @@ jobs:
         charts_url: https://beslovas.github.io/duckdb
         owner: beslovas
         repository: duckdb
-        branch: master
+        # branch: master
         commit_username: beslovas
         commit_email: beslovas@users.noreply.github.com
 
