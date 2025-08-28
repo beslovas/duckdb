@@ -149,7 +149,7 @@ jobs:
         tag: ${{ steps.chart_version.outputs.CHART_VERSION }}
         path: ./helm/duckdb
         registry: ghcr.io
-        registry_username: beslovas
-        registry_password: ${{ secrets.GHCR_TOKEN }}
+        registry_username: ${{ github.actor }}
+        registry_password: ${{ secrets.GITHUB_TOKEN }}
         sign: false
       if: steps.tag_exists.outputs.TAG_EXISTS == 'false'
