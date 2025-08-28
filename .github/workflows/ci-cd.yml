@@ -151,7 +151,7 @@ jobs:
         name: duckdb
         repository: beslovas/duckdb
         tag: ${{ steps.chart_version.outputs.CHART_VERSION }}
-        path: ./helm/duckdb
+        path: ./charts/duckdb
         registry: ghcr.io
         registry_username: ${{ github.actor }}
         registry_password: ${{ secrets.GITHUB_TOKEN }}
