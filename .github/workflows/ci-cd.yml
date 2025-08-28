@@ -98,7 +98,7 @@ jobs:
     - name: Get chart version
       id: chart_version
       run: |
-        echo "CHART_VERSION=$(cat helm/duckdb/Chart.yaml | awk -F"[ ',]+" '/version:/{print $2}' | head -n 1)" >> $GITHUB_OUTPUT
+        echo "CHART_VERSION=$(cat charts/duckdb/Chart.yaml | awk -F"[ ',]+" '/version:/{print $2}' | head -n 1)" >> $GITHUB_OUTPUT
 
     - name: Check if chart version exists
       id: tag_exists
@@ -149,6 +149,7 @@ jobs:
       uses: appany/helm-oci-chart-releaser@v0.5.0
       with:
         name: duckdb
+        tag: ${{ steps.chart_version.outputs.CHART_VERSION }}
         repository: beslovas/duckdb
         path: ./charts/duckdb
         registry: ghcr.io
