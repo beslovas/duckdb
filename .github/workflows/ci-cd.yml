@@ -138,7 +138,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         charts_dir: charts
-        charts_url: https://beslovas.github.io/duckdb
+        charts_url: https://beslovas.github.io/duckdb/
         owner: beslovas
         repository: duckdb
         # branch: master
