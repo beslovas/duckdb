@@ -44,12 +44,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Clean up existing images
-      run: |
-        # Remove any existing local images to avoid conflicts
-        docker image rm ghcr.io/${{ github.repository }}:${{ env.DUCKDB_VERSION }} 2>/dev/null || true
-        docker image rm ghcr.io/${{ github.repository }}:latest 2>/dev/null || true
-
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v5
@@ -69,8 +63,8 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        provenance: false
-        sbom: false
+        # provenance: false
+        # sbom: false
 
   security-scan:
     runs-on: ubuntu-latest
