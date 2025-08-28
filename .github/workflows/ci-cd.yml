@@ -9,10 +9,6 @@ env:
   DUCKDB_VERSION: v1.3.2
   TAG_PREFIX: ""
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   build-docker:
     runs-on: ubuntu-latest
@@ -88,6 +84,10 @@ jobs:
 
   chart:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
     
     steps:
     - name: Checkout
