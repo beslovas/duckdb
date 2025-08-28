@@ -132,13 +132,11 @@ jobs:
     - name: Publish
       uses: bpsoraggi/helm-gh-pages@2a2569e394590687d2c508516af3c9bb9fe7fa7e
       with:
-        charts_dir: .
+        charts_dir: charts
         charts_url: https://beslovas.github.io/duckdb
         owner: beslovas
         repository: duckdb
         branch: master
-        target_dir: helm/duckdb
-        index_dir: ./helm/duckdb
         commit_username: beslovas
         commit_email: beslovas@users.noreply.github.com
 
