@@ -30,10 +30,10 @@ entries:
         -----END PGP PUBLIC KEY BLOCK-----
     apiVersion: v2
     appVersion: 1.3.2
-    created: "2025-08-28T15:04:27.978440421Z"
+    created: "2025-08-28T15:11:58.570630231Z"
     description: A Helm chart for DuckDB with UI support, configurable extensions,
       and persistent storage
-    digest: 24c2cfdcda5993fcb630c3efcea45afafbbfebea29113dd389be8d1e05d3b4c9
+    digest: f5e6927ad9f6368fa303cddf873e2d7cba82d92ff4c047fe22c2f133c8955bd8
     home: https://duckdb.org/
     keywords:
     - duckdb
@@ -51,4 +51,4 @@ entries:
     urls:
     - https://beslovas.github.io/duckdb/duckdb-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-28T15:04:27.977362163Z"
+generated: "2025-08-28T15:11:58.56874511Z"
