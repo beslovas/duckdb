@@ -143,7 +143,7 @@ spec:
         {{- if .Values.auth.enabled }}
         - name: nginx-auth
           secret:
-            name: {{ include "duckdb.fullname" . }}-nginx-auth
+            secretName: {{ include "duckdb.fullname" . }}-nginx-auth
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
