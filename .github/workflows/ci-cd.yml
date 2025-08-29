@@ -139,7 +139,7 @@ jobs:
       uses: bpsoraggi/helm-gh-pages@2a2569e394590687d2c508516af3c9bb9fe7fa7e
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        charts_dir: chart
+        charts_dir: .
         charts_url: https://beslovas.github.io/duckdb
         owner: beslovas
         repository: duckdb
