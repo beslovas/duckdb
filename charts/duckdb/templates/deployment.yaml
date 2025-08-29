@@ -37,7 +37,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["script"]
-          args: ["-q", "-c", "./duckdb -ui", "/dev/null"]
+          args: ["-q", "-c", "duckdb -ui", "/dev/null"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
