@@ -117,15 +117,6 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          volumeMounts:
-            - name: config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-            {{- if .Values.auth.enabled }}
-            - name: nginx-auth
-              mountPath: /etc/nginx/.htpasswd
-              subPath: .htpasswd
-            {{- end }}
           {{- if .Values.auth.enabled }}
           command: ["/bin/sh"]
           args:
@@ -134,12 +125,18 @@ spec:
               apk add --no-cache apache2-utils
               htpasswd -cb /etc/nginx/.htpasswd "$(cat /tmp/auth/username)" "$(cat /tmp/auth/password)"
               nginx -g "daemon off;"
+          {{- end }}
           volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+            {{- if .Values.auth.enabled }}
+            - name: nginx-auth
+              mountPath: /etc/nginx/.htpasswd
+              subPath: .htpasswd
             - name: nginx-auth-config
               mountPath: /tmp/auth
-            - name: nginx-auth
-              mountPath: /etc/nginx
-          {{- end }}
+            {{- end }}
       {{- if .Values.sidecars }}
       {{- toYaml .Values.sidecars | nindent 8 }}
       {{- end }}
