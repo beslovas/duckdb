@@ -126,6 +126,20 @@ spec:
               mountPath: /etc/nginx/.htpasswd
               subPath: .htpasswd
             {{- end }}
+          {{- if .Values.auth.enabled }}
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+              apk add --no-cache apache2-utils
+              htpasswd -cb /etc/nginx/.htpasswd "$(cat /tmp/auth/username)" "$(cat /tmp/auth/password)"
+              nginx -g "daemon off;"
+          volumeMounts:
+            - name: nginx-auth-config
+              mountPath: /tmp/auth
+            - name: nginx-auth
+              mountPath: /etc/nginx
+          {{- end }}
       {{- if .Values.sidecars }}
       {{- toYaml .Values.sidecars | nindent 8 }}
       {{- end }}
@@ -142,8 +156,10 @@ spec:
             name: {{ include "duckdb.fullname" . }}
         {{- if .Values.auth.enabled }}
         - name: nginx-auth
-          secret:
-            secretName: {{ include "duckdb.fullname" . }}-nginx-auth
+          emptyDir: {}
+        - name: nginx-auth-config
+          configMap:
+            name: {{ include "duckdb.fullname" . }}-nginx-auth-config
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

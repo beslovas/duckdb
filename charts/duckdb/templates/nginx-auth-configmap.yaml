@@ -1,0 +1,11 @@
+{{- if .Values.auth.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "duckdb.fullname" . }}-nginx-auth-config
+  labels:
+    {{- include "duckdb.labels" . | nindent 4 }}
+data:
+  username: {{ .Values.auth.username | quote }}
+  password: {{ .Values.auth.password | quote }}
+{{- end }}
