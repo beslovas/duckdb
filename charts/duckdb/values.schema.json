@@ -478,6 +478,27 @@
       "additionalProperties": {
         "type": "string"
       }
+    },
+    "auth": {
+      "type": "object",
+      "description": "Basic authentication configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable basic authentication",
+          "default": false
+        },
+        "username": {
+          "type": "string",
+          "description": "Username for basic authentication",
+          "default": "admin"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for basic authentication",
+          "default": "changeme"
+        }
+      }
     }
   },
   "additionalProperties": false

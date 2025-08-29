@@ -85,6 +85,11 @@ spec:
             - name: config
               mountPath: /root/.duckdbrc
               subPath: duckdbrc
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              mountPath: /root/.duckdb
+              subPath: duckdb-config
+            {{- end }}
           env:
             - name: DUCKDB_DATABASE_PATH
               value: "{{ .Values.persistence.path }}/{{ .Values.duckdb.databaseFile }}"
@@ -116,6 +121,11 @@ spec:
             - name: config
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
+            {{- if .Values.auth.enabled }}
+            - name: nginx-auth
+              mountPath: /etc/nginx/.htpasswd
+              subPath: .htpasswd
+            {{- end }}
       {{- if .Values.sidecars }}
       {{- toYaml .Values.sidecars | nindent 8 }}
       {{- end }}
@@ -130,6 +140,11 @@ spec:
         - name: config
           configMap:
             name: {{ include "duckdb.fullname" . }}
+        {{- if .Values.auth.enabled }}
+        - name: nginx-auth
+          secret:
+            name: {{ include "duckdb.fullname" . }}-nginx-auth
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

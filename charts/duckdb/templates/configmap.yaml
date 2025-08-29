@@ -49,6 +49,11 @@ data:
         server {
             listen 80;
 
+            {{- if .Values.auth.enabled }}
+            auth_basic "Restricted Access";
+            auth_basic_user_file /etc/nginx/.htpasswd;
+            {{- end }}
+
             location ~ ^/(config|welcome|version|manifest|.*\.js|.*\.woff2|.*\.svg|)$ {
                 proxy_pass http://duckdb;
 

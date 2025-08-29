@@ -125,3 +125,8 @@ startupProbe:
   #   DUCKDB_TEMP_DIR: "/tmp"
   #   CUSTOM_VAR: "custom_value"
 env: {}
+
+auth:
+  enabled: false
+  username: "admin"
+  password: "changeme"

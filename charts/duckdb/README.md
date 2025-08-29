@@ -62,6 +62,9 @@ The following table lists the configurable parameters of the DuckDB chart and th
 | `service.type` | Kubernetes service type | `ClusterIP` |
 | `service.port` | Service port | `4213` |
 | `ingress.enabled` | Enable ingress | `false` |
+| `auth.enabled` | Enable basic authentication | `false` |
+| `auth.username` | Username for basic auth | `admin` |
+| `auth.password` | Password for basic auth | `changeme` |
 | `resources.limits.cpu` | CPU resource limit | `1000m` |
 | `resources.limits.memory` | Memory resource limit | `1Gi` |
 | `resources.requests.cpu` | CPU resource request | `100m` |
