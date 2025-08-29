@@ -36,10 +36,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["script"]
-          args: ["-q", "-c", "duckdb -ui", "/dev/null"]
           ports:
             - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: duckdb
               containerPort: 4213
               protocol: TCP
           {{- if .Values.livenessProbe.enabled }}
@@ -105,38 +106,21 @@ spec:
             - name: DUCKDB_THREADS
               value: "{{ .Values.duckdb.config.threads }}"
             {{- end }}
+            {{- if .Values.auth.enabled }}
+            - name: AUTH_ENABLED
+              value: "true"
+            - name: AUTH_USERNAME
+              value: {{ .Values.auth.username | quote }}
+            - name: AUTH_PASSWORD
+              value: {{ .Values.auth.password | quote }}
+            {{- end }}
             {{- if .Values.env }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
-                        {{- end }}
-        {{- end }}
-        - name: nginx-proxy
-          image: nginx:alpine
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          {{- if .Values.auth.enabled }}
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - |
-              apk add --no-cache apache2-utils
-              htpasswd -cb /etc/nginx/.htpasswd "$(cat /tmp/auth/username)" "$(cat /tmp/auth/password)"
-              nginx -g "daemon off;"
-          {{- end }}
-          volumeMounts:
-            - name: config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-            {{- if .Values.auth.enabled }}
-            - name: nginx-auth
-              mountPath: /etc/nginx/.htpasswd
-              subPath: .htpasswd
-            - name: nginx-auth-config
-              mountPath: /tmp/auth
             {{- end }}
+            {{- end }}
+
       {{- if .Values.sidecars }}
       {{- toYaml .Values.sidecars | nindent 8 }}
       {{- end }}
@@ -151,13 +135,7 @@ spec:
         - name: config
           configMap:
             name: {{ include "duckdb.fullname" . }}
-        {{- if .Values.auth.enabled }}
-        - name: nginx-auth
-          emptyDir: {}
-        - name: nginx-auth-config
-          configMap:
-            name: {{ include "duckdb.fullname" . }}-nginx-auth-config
-        {{- end }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

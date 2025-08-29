@@ -22,7 +22,7 @@ jobs:
     - name: Check for Dockerfile changes or tag
       id: check-changes
       run: |
-        if git diff --name-only HEAD~1 HEAD | grep -q "Dockerfile" || [[ "${{ github.ref }}" == refs/tags/* ]]; then
+        if git diff --name-only HEAD~1 HEAD | grep -q "image/Dockerfile" || [[ "${{ github.ref }}" == refs/tags/* ]]; then
           echo "has_changes=true" >> $GITHUB_OUTPUT
         else
           echo "has_changes=false" >> $GITHUB_OUTPUT
@@ -56,7 +56,7 @@ jobs:
     - name: Build and push multi-arch Docker image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./image
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
@@ -100,7 +100,7 @@ jobs:
     - name: Get chart version
       id: chart_version
       run: |
-        echo "CHART_VERSION=$(cat charts/duckdb/Chart.yaml | awk -F"[ ',]+" '/version:/{print $2}' | head -n 1)" >> $GITHUB_OUTPUT
+        echo "CHART_VERSION=$(cat chart/Chart.yaml | awk -F"[ ',]+" '/version:/{print $2}' | head -n 1)" >> $GITHUB_OUTPUT
 
     - name: Check if chart version exists
       id: tag_exists
@@ -153,7 +153,7 @@ jobs:
         name: duckdb
         tag: ${{ steps.chart_version.outputs.CHART_VERSION }}
         repository: beslovas/duckdb
-        path: ./charts/duckdb
+        path: ./chart
         registry: ghcr.io
         registry_username: ${{ github.actor }}
         registry_password: ${{ secrets.GITHUB_TOKEN }}
