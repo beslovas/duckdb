@@ -119,11 +119,9 @@ startupProbe:
   failureThreshold: 30
   successThreshold: 1
 
-env: {}
   # Example:
   # env:
   #   DUCKDB_LOG_LEVEL: "INFO"
   #   DUCKDB_TEMP_DIR: "/tmp"
   #   CUSTOM_VAR: "custom_value"
-
-
+env: {}
