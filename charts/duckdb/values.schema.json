@@ -268,11 +268,6 @@
       "type": "object",
       "description": "DuckDB specific configuration",
       "properties": {
-        "ui": {
-          "type": "boolean",
-          "description": "Enable DuckDB UI mode",
-          "default": true
-        },
         "databaseFile": {
           "type": "string",
           "description": "Database file name",
@@ -319,11 +314,6 @@
       "type": "object",
       "description": "ConfigMap configuration",
       "properties": {
-        "enabled": {
-          "type": "boolean",
-          "description": "Enable ConfigMap for duckdbrc",
-          "default": true
-        },
         "additionalConfig": {
           "type": "string",
           "description": "Additional DuckDB configuration to append to duckdbrc"
@@ -488,7 +478,8 @@
       "additionalProperties": {
         "type": "string"
       }
-    }
+    },
+    
   },
   "additionalProperties": false
 }

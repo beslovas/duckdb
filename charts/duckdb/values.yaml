@@ -1,5 +1,4 @@
 duckdb:
-  ui: true
   databaseFile: "duckdb.db"
   extensions:
     - httpfs # HTTP file system support
@@ -84,7 +83,6 @@ persistence:
   path: /duckdb/data
 
 configMap:
-  enabled: true
   additionalConfig: |
 
 initContainers: []
@@ -127,3 +125,5 @@ env: {}
   #   DUCKDB_LOG_LEVEL: "INFO"
   #   DUCKDB_TEMP_DIR: "/tmp"
   #   CUSTOM_VAR: "custom_value"
+
+

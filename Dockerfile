@@ -13,4 +13,4 @@ RUN curl -L -o duckdb_cli.zip "https://github.com/duckdb/duckdb/releases/downloa
 
 EXPOSE 4213
 
-ENTRYPOINT [ "/duckdb" ]
+ENTRYPOINT [ "/duckdb", "-ui" ]

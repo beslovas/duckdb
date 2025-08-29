@@ -4,7 +4,8 @@ A Helm chart for deploying DuckDB with UI support, configurable extensions, and 
 
 ## Features
 
-- **DuckDB UI**: Web-based interface accessible on port 4213
+- **DuckDB UI**: Web-based interface accessible through nginx proxy on port 80
+- **Nginx Proxy**: Reverse proxy sidecar container for better load balancing
 - **Configurable Extensions**: Install and load DuckDB extensions automatically
 - **Persistent Storage**: Configurable persistent volume for data storage
 - **Custom Configuration**: ConfigMap-based duckdbrc configuration
@@ -49,7 +50,7 @@ The following table lists the configurable parameters of the DuckDB chart and th
 | `image.repository` | Docker image repository | `ghcr.io/beslovas/duckdb` |
 | `image.tag` | Docker image tag | `1.3.2` |
 | `image.pullPolicy` | Docker image pull policy | `IfNotPresent` |
-| `duckdb.ui` | Enable DuckDB UI mode | `true` |
+
 | `duckdb.extensions` | List of extensions to install | `["httpfs", "parquet", "json", "sqlite"]` |
 | `duckdb.databaseFile` | Database file name | `duckdb.db` |
 | `duckdb.config.memory_limit` | Memory limit for DuckDB | `1GB` |
