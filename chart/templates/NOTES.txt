@@ -20,4 +20,24 @@
 6. To view logs:
    kubectl logs deployment/{{ include "duckdb.fullname" . }}
 
-7. Available extensions: {{ join ", " .Values.duckdb.extensions }}
+7. Health check endpoints:
+   - Liveness probe: /version on port 4213 (checks if DuckDB is running)
+   - Readiness probe: /version on port 4213 (checks if UI is ready to serve)
+   - Startup probe: /version on port 4213 (checks if system is initialized)
+
+8. Available extensions:
+{{- if .Values.duckdb.extensions }}
+{{- range .Values.duckdb.extensions }}
+   - {{ . }}
+{{- end }}
+{{- else }}
+   - No extensions enabled
+{{- end }}
+
+{{- if .Values.auth.enabled }}
+9. Authentication is enabled:
+   - Username: {{ .Values.auth.username }}
+   - Password: {{ .Values.auth.password }}
+{{- else }}
+9. Authentication is disabled (no login required)
+{{- end }}
