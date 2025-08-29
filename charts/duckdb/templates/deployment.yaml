@@ -40,7 +40,7 @@ spec:
           args: ["-q", "-c", "duckdb -ui", "/dev/null"]
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 4213
               protocol: TCP
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:

@@ -291,8 +291,8 @@
           "properties": {
             "memory_limit": {
               "type": "string",
-              "pattern": "^[0-9]+[KMGTPEZYkmgtpezy]i?$",
-              "description": "Memory limit for DuckDB",
+              "pattern": "^[0-9]+[KMGTPEZYkmgtpezy]i?[Bb]?$",
+              "description": "Memory limit for DuckDB (e.g., '1GB', '1GiB', '1000MB', '1024MiB')",
               "default": "1GB"
             },
             "threads": {

@@ -17,7 +17,7 @@ duckdb:
     # - spatial # Geospatial functions
     # - visualizer # Query visualization  
   config:
-    memory_limit: "1Gi" # Maximum memory usage for the database
+    memory_limit: "1GB" # Maximum memory usage for the database
     threads: 4 # Number of threads to use for parallel processing
     custom: {} 
 
@@ -47,7 +47,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 4213
+  port: 80
   annotations: {}
 
 ingress:

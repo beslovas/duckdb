@@ -30,15 +30,42 @@ data:
     
     .mode table
     
-    SELECT name, loaded FROM duckdb_extensions() WHERE loaded = true;
+    SELECT 'Extensions loaded:' as status;
+    {{- if .Values.duckdb.extensions }}
+    {{- range .Values.duckdb.extensions }}
+    SELECT '{{ . }}' as extension, 'loaded' as status;
+    {{- end }}
+    {{- end }}
   nginx.conf: |
     events {}
 
     http {
+        upstream duckdb {
+            server localhost:4213;
+        }
+
+        proxy_cache_path /tmp/nginx_cache levels=1:2 keys_zone=cache_zone:100m max_size=1g inactive=7d use_temp_path=off;
+
         server {
             listen 80;
+
+            location ~ ^/(config|welcome|version|manifest|.*\.js|.*\.woff2|.*\.svg|)$ {
+                proxy_pass http://duckdb;
+
+                proxy_cache cache_zone;
+                proxy_cache_valid 200 302 7d;
+                proxy_cache_valid any 3m;
+                proxy_cache_key $host$uri$is_args$args;
+                proxy_ignore_headers Cache-Control;
+
+                add_header X-Nginx-Cache-Status $upstream_cache_status;
+            }
+
             location / {
-                proxy_pass http://127.0.0.1:{{ .Values.service.port }};
+                proxy_pass http://duckdb;
+                proxy_set_header Host localhost:4213;
+                proxy_set_header Origin http://localhost:4213;
+                proxy_set_header Referer http://localhost:4213/;
             }
         }
     }
