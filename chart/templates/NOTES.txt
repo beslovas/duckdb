@@ -1,6 +1,9 @@
 
 {{- if .Values.ingress.enabled }}
-  The DuckDB UI is accessible at {{ .Values.ingress.host }}
+  The DuckDB UI is accessible at:
+{{- range .Values.ingress.hosts }}
+   - {{ .host }}
+{{- end }}
 {{- else if contains "ClusterIP" .Values.service.type }}
   To access DuckDB UI:
   
